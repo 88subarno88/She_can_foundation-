@@ -1,0 +1,97 @@
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Page background + center the card */
+body {
+  background: #f3eafb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* The white box holding the form */
+.card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 420px;
+}
+
+h1 {
+  color: #7b2cbf;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: #777;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* Form fields stacked in a column */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Highlight field when clicked */
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #7b2cbf;
+}
+
+button {
+  margin-top: 18px;
+  padding: 12px;
+  background: #7b2cbf;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #6a23a8;
+}
+
+/* Result message after submit */
+#result {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.admin-link {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+  color: #7b2cbf;
+}
