@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - She Can Foundation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>Admin Panel</h1>
+
+    <!-- Login box: ask for password before showing messages -->
+    <div id="loginBox">
+      <label for="password">Enter admin password</label>
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="loadMessages()">View Messages</button>
+      <p id="error" style="color:red; text-align:center; margin-top:10px;"></p>
+    </div>
+
+    <!-- Messages will be shown here after login -->
+    <div id="messages"></div>
+  </div>
+
+  <script>
+    // Ask the backend for messages using the typed password
+    async function loadMessages() {
+      const password = document.getElementById("password").value;
+
+      const res = await fetch("/api/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+
+      // Wrong password
+      if (!res.ok) {
+        document.getElementById("error").textContent = "Wrong password.";
+        return;
+      }
+
+      // Hide login box and show the messages
+      const messages = await res.json();
+      document.getElementById("loginBox").style.display = "none";
+
+      const box = document.getElementById("messages");
+      if (messages.length === 0) {
+        box.innerHTML = "<p>No messages yet.</p>";
+        return;
+      }
+
+      // Build a small card for each message
+      box.innerHTML = messages
+        .map(
+          (m) => `
+        <div style="border:1px solid #ddd; border-radius:8px; padding:10px; margin-top:10px;">
+          <b>${m.name}</b> (${m.email})<br />
+          <small>${m.date}</small>
+          <p>${m.message}</p>
+        </div>`
+        )
+        .join("");
+    }
+  </script>
+</body>
+</html>
